@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('XXX','AAAController@bbb');
+ 
+Route::get('admin/profile/create','Admin\ProfileController@add');
+Route::get('admin/profile/edit','Admin\ProfileController@edit');
