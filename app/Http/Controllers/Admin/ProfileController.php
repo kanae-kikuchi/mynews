@@ -26,7 +26,6 @@ public function update()
 {
     return redilect('admin/profile/edit');
 
-Route::get('admin/profile/create','ProfileController@'add');
-Route::get('admin/profile/edit','ProfileController@edit');
+
 }
 }
