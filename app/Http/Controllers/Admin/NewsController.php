@@ -16,7 +16,7 @@ class NewsController extends Controller
   public function create(Request $request)
   {
     $this->validate($request, News::$rules);
-​
+
       $news = new News;
       $form = $request->all();
 
