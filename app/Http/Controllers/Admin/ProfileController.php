@@ -9,6 +9,14 @@ use App\Profile;
 
 class ProfileController extends Controller
 {
+    public function index(Request $request)
+    {
+        // profileをすべて取得
+        $profiles = Profile::all();
+        // admin/profile/index.blade.phpにprofilesを渡す
+        return view('admin.profile.index',['profiles'=>$profiles]);
+    }
+
     public function add()
     {
         return view('admin.profile.create');
@@ -34,15 +42,32 @@ class ProfileController extends Controller
         return redirect('admin/profile/create');
     }
 
-    public function edit()
+    public function edit(Request $request)
     {
-        return view('admin.profile.edit');
+        // idでprofileデータを取得
+        $profile = Profile::find($request->id);
+        if(empty($profile)){
+            abort(404);
+        }
+        // admin/profile/edit.blade.phpにprofileを渡す
+        return view('admin.profile.edit',['profile'=>$profile]);
+    
     }
 
     public function update()
     {
+        // Validationをかける
+        $this->validate($request,Profile::$rules);
 
+        // News Modelからデータを取得する
+        $profile = Profile::find($request->id);
 
-        return redirect('admin/profile/edit');
+        // 送信されてきたフォームデータを格納する
+        $form = $request->all();
+        unset($form['_token']);
+
+        //該当するデータを上書きして保存する
+        $profile->fill($form)->save();
+        return redirect('admin/profile/');
     }
 }
