@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
 use App\Profile;
+use App\History;
+use Carbon\Carbon;
 
 class ProfileController extends Controller
 {
@@ -73,7 +74,7 @@ class ProfileController extends Controller
         $history->news_id = $news->id;
         $history->edited_at = Carbon::now();
         $history->save();
-        
+
         return redirect('admin/profile/');
     }
 }
