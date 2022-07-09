@@ -30,8 +30,8 @@
                                 <a href="{{ action('Admin\ProfileController@edit', ['id' => $profile->id]) }}">編集</a>
                             </td>
                             <td>{{ $profile->name }}</td>
-                            <td>{{ ($profile->gender}}</td>
-                            <td>{{ ($profile->hobby }}</td>
+                            <td>{{ $profile->gender}}</td>
+                            <td>{{ $profile->hobby }}</td>
 
                         </tr>
                         @endforeach
